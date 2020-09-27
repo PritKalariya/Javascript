@@ -176,7 +176,7 @@ console.log(rates);
 /******************************************
  * Functions returning functions
 */
-
+/*
 function interviewQuestion(job) {
     if(job === 'designer') {
         return function(name) {
@@ -203,3 +203,29 @@ designerQuestion('John');
 
 // Method 2
 interviewQuestion('teacher')('Prit');
+*/
+
+
+
+/****************************************
+ * Immediately Invoked Function Expressions (IIFE)
+*/
+/*
+// Normal Function
+function game() {
+    var score = Math.random() * 10;
+    console.log(score >= 5);
+}
+game();
+
+// IIFE
+(
+    function () {
+        var score = Math.random() * 10;
+        console.log(score >= 5);
+    }
+)();
+
+// checking data privacy 
+//console.log(score);
+*/
