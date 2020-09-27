@@ -68,7 +68,7 @@ While, on the other hand the function constructor, the newly created object inhe
 /************************
  * Primitive vs Objects
 */
-
+/*
 // Primitives
 var a = 23;
 var b = a;
@@ -108,7 +108,7 @@ change(age, obj);
 
 console.log(age);
 console.log(obj.city);
-
+*/
 
 /*
 Primitives: numbers,strings, booleans, undefined, and null
@@ -122,3 +122,50 @@ Variables associated with objects do not actually contain the object, but instea
 
 So a variable declared as an object does not have a real copy of the object it just points to that object.
 */
+
+
+
+/**********************************************
+ * Passing Functions as arguments
+*/
+
+var years = [1990, 1965, 1937, 2005, 1998];
+
+// Generic function
+function arrayCalc(arr, fn) {
+    var arrRes = [];
+    for (var i = 0; i < arr.length; i++) {
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+// callback function 1
+function calculateAge(el) {
+    return 2016 - el;
+}
+
+// callback function 2
+function isFullAge(el) {
+    return el >= 18;
+}
+
+// callback function 3
+function maxHeartRate(el) {
+    if(el >= 18 && el <= 81) {
+        return Math.round(206.9 - (0.67 * el));
+    } else {
+        return -1;
+    }
+    
+}
+
+var ages = arrayCalc(years, calculateAge);
+
+var fullAge = arrayCalc(ages, isFullAge);
+
+var rates = arrayCalc(ages, maxHeartRate);
+
+console.log(ages);
+console.log(fullAge);
+console.log(rates);
