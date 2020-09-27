@@ -235,8 +235,7 @@ game();
 /*********************************
  *  Closures
 */
-
-
+/*
 // Generic function
 function retirement(retirementAge) {
     var a = ' years left until retirement.';
@@ -283,7 +282,7 @@ function interviewQuestion(job) {
 }
 */
 
-
+/*
 // Above function using closures
 function interviewQuestion(job) {
     return function(name) {
@@ -301,4 +300,48 @@ interviewQuestion('teacher')('john');
 
 /*
 The difference between the two functions is that now, the decision is taken right inside of the function that we return, and that's possible because we can use the job variable to take this decision here, even after the interviewQuestion function has already returned.
+*/
+
+
+
+
+/***************************************
+ * Bind, call and apply
+ */
+
+var john = {
+    name: 'John',
+    age: 20,
+    job: 'teacher',
+    presentation: function(style, timeOfDay) {
+        if(style === 'formal') {
+            console.log('Good ' + timeOfDay + ', ladies and gentlemen! I\'m ' + this.name + ', I\'m a ' + this.job + ', and I\'m ' + this.age + ' years old.');
+        } else if(style === 'friendly') {
+            console.log('Hey! what\'s up? I\'m ' + this.name + ', I\'m a ' + this.job + ', and I\'m ' + this.age + ' years old. Have a nice ' + timeOfDay + ' .');
+        }
+    }
+};
+
+var emily = {
+    name: 'Emily',
+    age: 25,
+    job: 'designer'
+}
+
+// normal function call
+john.presentation('formal', 'morning');
+
+// call method
+john.presentation.call(emily, 'friendly', 'afternoon');
+
+// apply method
+john.presentation.apply(emily, ['formal', 'evening'])
+
+// bind method
+var johnFriendly = john.presentation.bind(john, 'friendly');
+johnFriendly('morning');
+johnFriendly('night');
+
+/*
+Bind method is similar to call function. The difference is tha t the bind function does not immediately call the fucntion. But instead it generates the copy of the function so that we can store it somewhere.
 */
