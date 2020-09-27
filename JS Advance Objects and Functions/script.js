@@ -128,7 +128,7 @@ So a variable declared as an object does not have a real copy of the object it j
 /**********************************************
  * Passing Functions as arguments
 */
-
+/*
 var years = [1990, 1965, 1937, 2005, 1998];
 
 // Generic function
@@ -169,3 +169,37 @@ var rates = arrayCalc(ages, maxHeartRate);
 console.log(ages);
 console.log(fullAge);
 console.log(rates);
+*/
+
+
+
+/******************************************
+ * Functions returning functions
+*/
+
+function interviewQuestion(job) {
+    if(job === 'designer') {
+        return function(name) {
+            console.log(name + ', can you please explain what UX design is ?');
+        }
+    } else if(job === 'teacher') {
+        return function (name) {
+            console.log('What subject do you teach ' + name + ' ?');
+        }
+    } else {
+        return function(name) {
+            console.log('Hello ' + name + ', what do you do ?');
+        }
+    }
+}
+
+// Method 1
+var teacherQuestion = interviewQuestion('teacher');
+var designerQuestion = interviewQuestion('designer');
+
+teacherQuestion('Prit');
+designerQuestion('Prit');
+designerQuestion('John');
+
+// Method 2
+interviewQuestion('teacher')('Prit');
