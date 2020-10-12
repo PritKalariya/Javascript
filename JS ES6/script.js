@@ -89,7 +89,7 @@ console.log(c);
 /*********************
 * Strings in ES6 
 */
-
+/*
 let firstName = 'John';
 let lastName = 'Smith';
 const yearOfBirth = 1990;
@@ -110,3 +110,32 @@ console.log(n.startsWith('J'), n.startsWith('j'));
 console.log(n.endsWith('Sm'));
 console.log(n.includes(' '));
 console.log(`${firstName} `.repeat(5));
+*/
+
+
+
+/*******************************
+* Arrow functions
+*/
+
+const years = [1990, 1965, 1982, 1937];
+
+// ES5
+var ages5 = years.map(function(el) {
+    return 2020 - el;
+});
+console.log(ages5);
+
+// ES6
+let ages6 = years.map(el => 2020 - el);
+console.log(ages6);
+
+ages6 = years.map((el, index) => `Ages element ${index + 1}: ${2020 - el}.`); // multiple arguments
+console.log(ages6);
+
+ages6 = years.map((el, index) => {
+    const curYear = new Date().getFullYear();
+    const age = curYear - el;
+    return `Ages element ${index + 1}: ${age}.`
+}); // multiple line code
+console.log(ages6);
